@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -22,7 +22,7 @@ def classify_number_api(request):
 
     # Validate input
     if not number or not number.isdigit():
-        return Response(
+        return JsonResponse(
             {"number": "alphabet", "error": "Number parameter is required."},
             status=status.HTTP_400_BAD_REQUEST,
         )
@@ -43,4 +43,4 @@ def classify_number_api(request):
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
 
-    return Response(data, status=status.HTTP_200_OK)
+    return JsonResponse(data, status=status.HTTP_200_OK)
