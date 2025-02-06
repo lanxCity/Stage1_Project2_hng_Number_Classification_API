@@ -13,7 +13,7 @@ This is a Django-based API that classifies numbers based on their mathematical p
 
 ## API Endpoint
 
-**Base URL:** `http://<your-domain>/api/classify-number/`
+**Base URL:** `https://stage1-project2-hng-number.onrender.com/api/classify-number/`
 
 ### Request Format
 
