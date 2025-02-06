@@ -1,0 +1,24 @@
+# Virtual environment (You should never push venv)
+.venv/
+*.pyc
+__pycache__/
+
+# Environment variables (if using a .env file for secrets)
+.env
+*.env
+
+# Database files (if using SQLite)
+db.sqlite3
+
+# Static and media files (if managed by the server)
+staticfiles/
+media/
+
+# Django secret key file (if stored separately)
+secret_key.txt
+
+# Logs and temporary files
+*.log
+*.pot
+*.pyc
+.DS_Store
