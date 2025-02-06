@@ -17,11 +17,10 @@ def home(request):
 
 # -> Create your views here.
 @api_view(["GET"])
-def classify_number_api(request):
-    number = request.GET.get("number")
+def classify_number_api(request, number=None):
 
     # Validate input
-    if not number or not number.isdigit():
+    if not number:
         return JsonResponse(
             {"number": "alphabet", "error": "Number parameter is required."},
             status=status.HTTP_400_BAD_REQUEST,
@@ -38,7 +37,7 @@ def classify_number_api(request):
             data["fun_fact"] = response.json().get("text", "No fact found.")
 
     except requests.exceptions.RequestException as e:
-        return Response(
+        return JsonResponse(
             {"error": f"Error occurred: {str(e)}"},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )

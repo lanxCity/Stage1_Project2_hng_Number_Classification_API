@@ -64,6 +64,7 @@ def classify_func(num):
     properties.insert(0, "armstrong") if is_armstrong() else None
 
     return {
+        "number": num,
         "is_prime": is_prime(),
         "is_perfect": is_perfect(),
         "properties": properties,
