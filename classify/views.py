@@ -22,7 +22,7 @@ def classify_number_api(request):
 
     # Validate input
     if not number or not number.isdigit():
-        return JsonResponse(
+        return Response(
             {"number": "alphabet", "error": "true"},
             status=status.HTTP_400_BAD_REQUEST,
         )
@@ -43,7 +43,7 @@ def classify_number_api(request):
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
 
-    return JsonResponse(data, status=status.HTTP_200_OK)
+    return Response(data, status=status.HTTP_200_OK)
 
 
 # @api_view(["GET"])
