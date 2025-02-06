@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from rest_framework.urlpatterns import format_suffix_patterns
+
 
 urlpatterns = [
     path("", views.home, name="home"),
@@ -14,3 +16,6 @@ urlpatterns = [
     #     name="classify_number_api",
     # ),
 ]
+
+
+urlpatterns = format_suffix_patterns(urlpatterns)
