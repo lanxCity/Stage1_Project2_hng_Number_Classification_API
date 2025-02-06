@@ -22,7 +22,7 @@ def classify_number_api(request, number=None):
     # Validate input
     if not number:
         return JsonResponse(
-            {"number": "alphabet", "error": "Number parameter is required."},
+            {"number": "alphabet", "error": "true"},
             status=status.HTTP_400_BAD_REQUEST,
         )
 
