@@ -3,6 +3,8 @@ def classify_func(num):
     Classify a number based on its properties.
     @param int num: int
     """
+    original_num = num
+    num = int(num.lstrip("-"))
 
     def is_even():
         return num % 2 == 0
@@ -64,7 +66,7 @@ def classify_func(num):
     properties.insert(0, "armstrong") if is_armstrong() else None
 
     return {
-        "number": num,
+        "number": int(original_num),
         "is_prime": is_prime(),
         "is_perfect": is_perfect(),
         "properties": properties,
