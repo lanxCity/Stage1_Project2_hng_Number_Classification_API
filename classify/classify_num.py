@@ -4,7 +4,6 @@ def classify_func(num):
     @param int num: int
     """
     original_num = num
-    num = abs(num)
 
     def is_even():
         return num % 2 == 0
@@ -33,6 +32,9 @@ def classify_func(num):
         - For each digit, raise it to the power of the number of digits, then sum these values.
         - Check if the sum is equal to the original number.
         """
+        if num < 0:  # Perfect numbers must be positive
+            return False
+
         str_num = str(num)
         power = len(str_num)
         return sum(int(i) ** power for i in str_num) == num
@@ -54,7 +56,7 @@ def classify_func(num):
                 6	6	    ❌ No	                  Only 6 (not added twice)
 
         """
-        if num == 1:
+        if num <= 1:  # Perfect numbers must be positive
             return False
 
         total = 1
@@ -69,8 +71,7 @@ def classify_func(num):
         """
         sum of each digit inside the number
         """
-        str_num = str(num)
-        return sum(int(i) for i in str_num)
+        return sum(int(i) for i in str(abs(num)))
 
     properties = ["even" if is_even() else "odd"]
 
@@ -84,6 +85,3 @@ def classify_func(num):
         "properties": properties,
         "digit_sum": digit_sum(),
     }
-
-
-print(classify_func(371))
