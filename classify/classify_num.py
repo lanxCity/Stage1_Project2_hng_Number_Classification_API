@@ -4,13 +4,23 @@ def classify_func(num):
     @param int num: int
     """
     original_num = num
-    num = int(num.lstrip("-"))
+    num = abs(num)
 
     def is_even():
         return num % 2 == 0
 
     def is_prime():
-        return num > 1 and all(num % i != 0 for i in range(2, int((num**0.5)) + 1))
+        """Efficient prime check (skips even numbers & unnecessary divisions)."""
+        if num < 2:
+            return False
+        if num in (2, 3):
+            return True
+        if num % 2 == 0 or num % 3 == 0:
+            return False
+        for i in range(5, int(num**0.5) + 1, 2):
+            if num % i == 0:
+                return False
+        return True
 
     def is_armstrong():
         """
@@ -25,8 +35,7 @@ def classify_func(num):
         """
         str_num = str(num)
         power = len(str_num)
-        total = sum(int(i) ** power for i in str_num)
-        return total == num
+        return sum(int(i) ** power for i in str_num) == num
 
     def is_perfect():
         """
@@ -45,6 +54,9 @@ def classify_func(num):
                 6	6	    ❌ No	                  Only 6 (not added twice)
 
         """
+        if num == 1:
+            return False
+
         total = 1
         for i in range(2, int(num**0.5) + 1):
             if num % i == 0:
@@ -60,10 +72,10 @@ def classify_func(num):
         str_num = str(num)
         return sum(int(i) for i in str_num)
 
-    is_even = "even" if is_even() else "odd"
-    properties = [is_even]
+    properties = ["even" if is_even() else "odd"]
 
-    properties.insert(0, "armstrong") if is_armstrong() else None
+    if is_armstrong():
+        properties.insert(0, "armstrong")
 
     return {
         "number": int(original_num),
@@ -72,3 +84,6 @@ def classify_func(num):
         "properties": properties,
         "digit_sum": digit_sum(),
     }
+
+
+print(classify_func(371))

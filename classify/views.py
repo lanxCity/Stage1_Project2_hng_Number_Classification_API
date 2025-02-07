@@ -8,9 +8,10 @@ import requests
 # custom files
 from .classify_num import classify_func
 
+session = requests.Session()  # Maintain a persistent session for faster requests
+
+
 # Home page
-
-
 def home(request):
     return HttpResponse("Welcome to the Render Host Platform")
 
@@ -21,17 +22,27 @@ def classify_number_api(request):
     number = request.GET.get("number")
 
     # Validate input
-    if not number or not number.lstrip("-").isdigit():
+    if not number:
         return JsonResponse(
-            {"number": None, "error": True},
+            {
+                "error": True,
+                "number": "",
+            },
             status=status.HTTP_400_BAD_REQUEST,
             safe=False,
             content_type="application/json",
         )
 
-    data = classify_func(number)
-    number = int(number)
+    if not number.isdigit():
+        return JsonResponse(
+            {"error": True, "number": number},
+            status=status.HTTP_400_BAD_REQUEST,
+            safe=False,
+            content_type="application/json",
+        )
 
+    number = int(number)
+    data = classify_func(number)
     # Request fun-fact api
     try:
         response = requests.get(f"http://numbersapi.com/{number}/math?json")
