@@ -25,6 +25,7 @@ def classify_number_api(request):
         return JsonResponse(
             {"number": "alphabet", "error": "true"},
             status=status.HTTP_400_BAD_REQUEST,
+            safe=False,
         )
 
     number = int(number)
@@ -43,7 +44,7 @@ def classify_number_api(request):
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
 
-    return JsonResponse(data, status=status.HTTP_200_OK)
+    return JsonResponse(data, status=status.HTTP_200_OK, safe=False)
 
 
 # @api_view(["GET"])
