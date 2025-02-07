@@ -51,7 +51,7 @@ def classify_func(num):
                     total += num // i
         return num == total
 
-    def digits_sum():
+    def digit_sum():
         """
         sum of each digit inside the number
         """
@@ -68,5 +68,5 @@ def classify_func(num):
         "is_prime": is_prime(),
         "is_perfect": is_perfect(),
         "properties": properties,
-        "digits_sum": digits_sum(),
+        "digit_sum": digit_sum(),
     }
