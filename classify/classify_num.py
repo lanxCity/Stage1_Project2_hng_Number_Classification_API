@@ -32,10 +32,10 @@ def classify_func(num):
         - For each digit, raise it to the power of the number of digits, then sum these values.
         - Check if the sum is equal to the original number.
         """
-        if num < 0:  # Perfect numbers must be positive
-            return False
+        # if num < 0:  # Perfect numbers must be positive
+        #     return False
 
-        str_num = str(num)
+        str_num = str(abs(num))
         power = len(str_num)
         return sum(int(i) ** power for i in str_num) == num
 
