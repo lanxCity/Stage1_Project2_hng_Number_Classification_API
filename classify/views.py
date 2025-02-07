@@ -33,7 +33,7 @@ def classify_number_api(request):
             content_type="application/json",
         )
 
-    if not number.isdigit():
+    if not number.lstrip("-").isdigit():
         return JsonResponse(
             {"error": True, "number": number},
             status=status.HTTP_400_BAD_REQUEST,
