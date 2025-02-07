@@ -21,7 +21,7 @@ def home(request):
 def classify_number_api(request):
     number = request.GET.get("number")
 
-    # Validate input
+    # Empty input
     if not number:
         return JsonResponse(
             {
@@ -33,7 +33,10 @@ def classify_number_api(request):
             content_type="application/json",
         )
 
-    if not number.lstrip("-").isdigit():
+    # None digit input
+    try:
+        number = int(number)
+    except ValueError:
         return JsonResponse(
             {"error": True, "number": number},
             status=status.HTTP_400_BAD_REQUEST,
@@ -41,12 +44,10 @@ def classify_number_api(request):
             content_type="application/json",
         )
 
-    number = int(number)
     data = classify_func(number)
     # Request fun-fact api
     try:
         response = requests.get(f"http://numbersapi.com/{number}/math?json")
-        print(response.json().get("text", "No fact found."))
         # check response status
         if response.status_code == 200:
             response.json().get("text", "No fact found.")
