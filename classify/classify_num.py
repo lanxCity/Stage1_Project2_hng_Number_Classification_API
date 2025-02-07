@@ -37,7 +37,7 @@ def classify_func(num):
 
         str_num = str(abs(original_num))
         power = len(str_num)
-        return sum(int(i) ** power for i in str_num) == num
+        return sum(int(i) ** power for i in str_num) == original_num
 
     def is_perfect():
         """
