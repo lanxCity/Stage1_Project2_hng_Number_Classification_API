@@ -34,9 +34,8 @@ def classify_func(num):
         """
         # if num < 0:  # Perfect numbers must be positive
         #     return False
-        print(original_num)
-        num = abs(original_num)
-        str_num = str(num)
+
+        str_num = str(abs(original_num))
         power = len(str_num)
         return sum(int(i) ** power for i in str_num) == num
 
