@@ -87,4 +87,4 @@ def classify_func(num):
     }
 
 
-print(classify_func(-5))
+# print(classify_func(-5))
